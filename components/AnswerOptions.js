@@ -4,19 +4,11 @@ import "animate.css";
 
 export default function AnswerOptions({
   options,
-  // selectedOption,
   setSelectedOption,
   correctAnswer,
 }) {
-  // console.log("selectedOption", selectedOption)
-  // const [selectedOption, setSelectedOption] = useState("");
   const [randomOptions, setRandomOptions] = useState([]);
-  // const [flippedState, setFlippedState] = useState("");
   const [animatingOption, setAnimatingOption] = useState(null);
-  // const [resultState, setResultState] = useState({
-  //   style: "",
-  //   text: ""
-  // });
 
   const RESULT_STATES = {
     correct: {
@@ -31,61 +23,20 @@ export default function AnswerOptions({
 
   useEffect(() => {
     setRandomOptions(shuffleArray(options));
-    // setFlippedState("");
   }, [options]);
 
   const handleOptionClick = async (option) => {
-    let resultStyle = "";
-    let resultText = "";
     setSelectedOption(option);
 
     if (animatingOption) return; // Prevent clicking during animation
-    // console.log("option", option)
-
-    // setAnimatingOption(option);
-    // setSelectedOption(option);
 
     if (option === correctAnswer) {
-      resultStyle = RESULT_STATES.correct.style;
-      resultText = RESULT_STATES.correct.text;
-      setAnimatingOption(resultText);
-      // setFlippedState(resultText);
-
-      // Wait for 1 second then revert
+      setAnimatingOption(RESULT_STATES.correct.text);
       await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // setFlippedState((prev) => ({ ...prev, [option]: false }));
-      // setFlippedState(null);
       setAnimatingOption(null);
-      // setResultState(resultState.correct);
-      // setSelectedOption(resultState.correct.text);
-
-      console.log("resultText", resultText);
-      console.log("resultStyle", resultStyle);
     } else {
-      resultStyle = RESULT_STATES.incorrect.style;
-      resultText = RESULT_STATES.incorrect.text;
-      // setResultState(resultState.incorrect);
-      // setSelectedOption(resultState.incorrect.text);
-
-      console.log("resultText", resultText);
-      console.log("resultStyle", resultStyle);
+      setAnimatingOption(RESULT_STATES.incorrect.text);
     }
-
-    // console.log("selectedOption", selectedOption)
-
-    // setAnimatingOption(null);
-    // setFlippedState((prev) => ({ ...prev, [option]: true }));
-    // setAnimatingOption(resultText);
-    // setFlippedState(resultText);
-
-    // // Wait for 1 second then revert
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // setFlippedState((prev) => ({ ...prev, [option]: false }));
-    // setAnimatingOption(null);
-    // setSelectedOption((prev) => prev === option ? null : prev);
-    // console.log(option, correctAnswer, resultState);
   };
 
   return (

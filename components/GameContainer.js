@@ -18,8 +18,6 @@ export default function GameContainer({
 
   const handleNextQuestion = () => {
     if (selectedOption === questions[currentQuestionIndex].correctAnswer) {
-      // console.log("Correct!");
-      // console.log(selectedOption);
       setScore((prevScore) => prevScore + 1);
 
       // Add green background for correct answer
@@ -32,7 +30,6 @@ export default function GameContainer({
     const nextQuestionIndex = currentQuestionIndex + 1;
     if (nextQuestionIndex < questions.length) {
       setCurrentQuestionIndex(nextQuestionIndex);
-      // setSelectedOption("");
     } else {
       setShowScore(true);
     }
@@ -42,7 +39,6 @@ export default function GameContainer({
     const prevQuestionIndex = currentQuestionIndex - 1;
     if (prevQuestionIndex >= 0) {
       setCurrentQuestionIndex(prevQuestionIndex);
-      // setSelectedOption("");
       setScore((prevScore) => prevScore - 1);
     }
   };

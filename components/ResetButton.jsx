@@ -1,13 +1,6 @@
 import { RotateCcw } from "lucide-react";
-// import { useState } from "react";
 
 export default function ResetButton() {
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [gameStarted, setGameStarted] = useState(false);
-  // const [categoryName, setCategoryName] = useState("");
-  // const [categoryImage, setCategoryImage] = useState("");
-  // const [questions, setQuestions] = useState([]);
-
   const handleReset = () => {
     setIsLoading(false);
     setGameStarted(false);
